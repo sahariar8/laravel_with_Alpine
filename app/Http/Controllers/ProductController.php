@@ -34,4 +34,15 @@ class ProductController extends Controller
         $product->delete();
         return response()->json(['msg'=>'Product Deleted Successfully']);
     }
+
+    public function update(Request $request,$id){
+        $product = Product::find($id);
+        $validated = $request->validate([
+            'name'=> 'required|min:4',
+            'description'=>'required|max:255',
+            'price'=> 'required'
+        ]);
+        $product->update($validated);
+        return response()->json(['msg'=> 'Product Updated Successfully','product'=>$product],200);
+    }
 }
