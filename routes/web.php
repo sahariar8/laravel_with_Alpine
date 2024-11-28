@@ -21,4 +21,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::view('/alpine','alpine.demo');
+Route::get('/',[ProductController::class,'form']);
 Route::get('/products',[ProductController::class,'index']);
+Route::post('/products',[ProductController::class,'store']);
+Route::delete('/product/{id}',[ProductController::class,'destroy']);
